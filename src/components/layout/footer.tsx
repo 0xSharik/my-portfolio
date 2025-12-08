@@ -97,7 +97,7 @@ export function Footer() {
                     <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
                     <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
                   </svg>
-                  sharik@example.com
+                  sharikhasan390@gmail.com
                 </div>
                 <div className="flex items-center text-gray-300 text-sm">
                   <svg className="w-4 h-4 mr-2 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
@@ -106,19 +106,7 @@ export function Footer() {
                   Available for work
                 </div>
               </div>
-              <div className="mt-4 pt-4 border-t border-gray-700">
-                <div className="flex space-x-4">
-                  <div className="w-8 h-8 bg-cyan-500/20 rounded-full flex items-center justify-center hover:bg-cyan-500/30 transition-colors cursor-pointer">
-                    <span className="text-xs text-cyan-400 font-bold">GH</span>
-                  </div>
-                  <div className="w-8 h-8 bg-purple-500/20 rounded-full flex items-center justify-center hover:bg-purple-500/30 transition-colors cursor-pointer">
-                    <span className="text-xs text-purple-400 font-bold">LI</span>
-                  </div>
-                  <div className="w-8 h-8 bg-blue-500/20 rounded-full flex items-center justify-center hover:bg-blue-500/30 transition-colors cursor-pointer">
-                    <span className="text-xs text-blue-400 font-bold">TW</span>
-                  </div>
-                </div>
-              </div>
+              
             </div>
           </div>
         </div>
