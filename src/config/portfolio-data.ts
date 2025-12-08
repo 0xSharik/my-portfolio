@@ -83,9 +83,9 @@ export const portfolioContentMock: PortfolioContent = {
   availability: "Open to opportunities",
 
   heroStats: {
-    projectsCompleted: 20,
+    projectsCompleted: 10,
     ideathonFinalist: true,
-    professionalProjects: 3,
+    professionalProjects: 5,
   },
 
   skills: [
@@ -227,23 +227,17 @@ export const portfolioContentMock: PortfolioContent = {
     },
     {
       id: "ml-dashboard",
-      name: "ML Experiment Dashboard",
-      shortDescription: "Web dashboard for visualizing machine learning experiment metrics in real time.",
+      name: "HOA-US Community Management Platform",
+      shortDescription: "A full-stack HOA management platform for handling complaints, notices, documents, and resident communication in one secure system.",
       longDescription:
-        "A dashboard for tracking model training runs, aggregating metrics, and visualizing them as interactive charts and 3D embeddings.",
-      techStack: ["React", "Node.js", "PostgreSQL", "Python"],
-      role: "Implemented backend API, database schema, and frontend data visualizations.",
+        "A full-stack web platform for managing Homeowners Associations, enabling residents and administrators to handle announcements, documents, complaints, and community operations through a centralized digital system with automated communication",
+      techStack: ["React", "Node.js", "Firebase", "Firestore", "Email Service", "Tailwind CSS"],
+      role: "Designed and developed the complete full-stack architecture including frontend UI, backend APIs, database structure, authentication, email notification system, and deployment. Handled security, performance optimization, and responsive design.",
       repoUrl: "https://github.com/your-username/ml-dashboard",
+      liveUrl: "https://hoa-us.web.app/home",
+      metrics: ["Live production deployment with real users", "Automated email notifications for complaints & updates", "Multi-role access control (Admin, Residents)","Centralized document, notice, and complaint management","Real-time data updates with secure authentication"],
     },
-    {
-      id: "network-sim",
-      name: "Network Traffic Simulator",
-      shortDescription: "Interactive visualization of packet flow across a simulated network graph.",
-      longDescription:
-        "A teaching tool that shows how packets move through routers and switches, with adjustable latency and bandwidth parameters.",
-      techStack: ["TypeScript", "D3.js", "Node.js"],
-      role: "Built the core simulation and data-visualization layer.",
-    },
+   
   ],
 
   experience: [

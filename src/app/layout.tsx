@@ -8,6 +8,7 @@ import { CanvasProvider } from "@/providers/canvas-provider";
 import { PersistentCanvas } from "@/components/canvas/persistent-canvas";
 import { Navbar } from "@/components/navigation/navbar";
 import { Footer } from "@/components/layout/footer";
+import { CustomCursor } from "@/components/atoms/custom-cursor";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -45,6 +46,7 @@ export default function RootLayout({
             <RouteTransitionProvider>
               <CanvasProvider>
                 <PersistentCanvas />
+                <CustomCursor />
                 <div className="relative z-10">
                   <Navbar />
                   {children}

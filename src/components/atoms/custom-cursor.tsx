@@ -49,13 +49,15 @@ export function CustomCursor() {
 
   return (
     <>
+      {/* Main cursor - diamond shape */}
       <motion.div
         ref={cursorRef}
-        className="fixed z-50 pointer-events-none mix-blend-difference"
+        className="fixed z-50 pointer-events-none"
         animate={{
-          x: position.x - 8,
-          y: position.y - 8,
-          scale: isHovering ? 2 : 1,
+          x: position.x - 12,
+          y: position.y - 12,
+          scale: isHovering ? 1.5 : 1,
+          rotate: isHovering ? 45 : 0,
         }}
         transition={{
           type: "spring",
@@ -64,24 +66,74 @@ export function CustomCursor() {
           mass: 0.5,
         }}
       >
-        <div className={`w-4 h-4 bg-white rounded-full ${isPointer ? "opacity-50" : "opacity-70"}`} />
+        <div 
+          className="w-6 h-6 relative"
+          style={{
+            transform: 'rotate(45deg)',
+          }}
+        >
+          <div 
+            className="absolute inset-0"
+            style={{
+              background: 'linear-gradient(45deg, #00f2ff, #7000ff)',
+              boxShadow: '0 0 20px rgba(0, 242, 255, 0.5)',
+            }}
+          />
+          <div 
+            className="absolute inset-1"
+            style={{
+              background: 'rgba(0, 0, 0, 0.9)',
+            }}
+          />
+        </div>
       </motion.div>
       
+      {/* Trailing dot */}
+      <motion.div
+        className="fixed z-50 pointer-events-none"
+        animate={{
+          x: position.x - 2,
+          y: position.y - 2,
+        }}
+        transition={{
+          type: "spring",
+          stiffness: 200,
+          damping: 15,
+          mass: 1,
+        }}
+      >
+        <div 
+          className="w-1 h-1 rounded-full"
+          style={{
+            background: 'linear-gradient(45deg, #00f2ff, #7000ff)',
+            boxShadow: '0 0 10px rgba(0, 242, 255, 0.8)',
+          }}
+        />
+      </motion.div>
+
+      {/* Outer glow ring */}
       <motion.div
         className="fixed z-50 pointer-events-none"
         animate={{
           x: position.x - 20,
           y: position.y - 20,
-          scale: isHovering ? 1.5 : 1,
+          scale: isHovering ? 0.8 : 1,
+          opacity: isHovering ? 0.8 : 0.3,
         }}
         transition={{
           type: "spring",
-          stiffness: 300,
+          stiffness: 150,
           damping: 20,
-          mass: 0.8,
+          mass: 1.2,
         }}
       >
-        <div className="w-10 h-10 border border-white/30 rounded-full" />
+        <div 
+          className="w-10 h-10 rounded-full border-2"
+          style={{
+            borderColor: 'rgba(0, 242, 255, 0.3)',
+            boxShadow: '0 0 20px rgba(0, 242, 255, 0.2)',
+          }}
+        />
       </motion.div>
     </>
   );

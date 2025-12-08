@@ -23,6 +23,7 @@ export default function Projects() {
             transition={{ duration: 0.8 }}
             className="space-y-16 md:space-y-24"
           >
+            <h2 className="text-2xl md:text-3xl font-bold text-center">project upload under process</h2>
             <h1 className="text-4xl md:text-5xl font-bold text-center">
               <span className="text-brand-magenta-light">//</span> Featured Work
             </h1>

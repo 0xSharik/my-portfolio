@@ -37,9 +37,14 @@ export default function Contact() {
               <div className="space-y-6">
                 <div>
                   <h3 className="text-xl font-semibold text-cyan-400 mb-2">Email</h3>
-                  <p className="text-gray-300">sharik.hasan@example.com</p>
+                  <p className="text-gray-300">sharikhasan390@gmail.com</p>
+                  
                 </div>
-                
+                <div>
+                  <h3 className="text-xl font-semibold text-cyan-400 mb-2">Mobile</h3>
+                  <p className="text-gray-300">+91 6283400770</p>
+                  
+                </div>
                 <div>
                   <h3 className="text-xl font-semibold text-cyan-400 mb-2">Location</h3>
                   <p className="text-gray-300">Available for remote work worldwide</p>
@@ -48,14 +53,14 @@ export default function Contact() {
                 <div>
                   <h3 className="text-xl font-semibold text-cyan-400 mb-2">Connect</h3>
                   <div className="flex gap-4 justify-center">
-                    <a href="#" className="text-cyan-300 hover:text-cyan-400 transition-colors">
+                    <a href="https://www.linkedin.com/in/sharik-hasan/" className="text-cyan-300 hover:text-cyan-400 transition-colors">
                       LinkedIn
                     </a>
-                    <a href="#" className="text-cyan-300 hover:text-cyan-400 transition-colors">
+                    <a href="https://github.com/0xSharik" className="text-cyan-300 hover:text-cyan-400 transition-colors">
                       GitHub
                     </a>
-                    <a href="#" className="text-cyan-300 hover:text-cyan-400 transition-colors">
-                      Twitter
+                    <a href="https://www.instagram.com/samar_pb15/" className="text-cyan-300 hover:text-cyan-400 transition-colors">
+                        Instagram
                     </a>
                   </div>
                 </div>
