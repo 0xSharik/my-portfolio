@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import { PageLayout } from "@/components/layouts/page-layout";
 import { portfolioContentMock } from "@/config/portfolio-data";
 import { SkillsGrid } from "@/components/organisms/skills-grid";
-import { ScrambleText } from "@/components/ui/scramble-text";
 
 export default function About() {
   const { name, location, education, skills } = portfolioContentMock;
@@ -28,15 +27,11 @@ export default function About() {
             <section className="text-center space-y-6">
               <h1 className="text-4xl md:text-5xl font-bold">
                 <span className="text-brand-blue-light">//</span>{" "}
-                <ScrambleText text="About Me" scrambleSpeed={100} revealDuration={2000} />
+                About Me
               </h1>
 
               <div className="max-w-3xl mx-auto text-gray-300 text-lg">
-                <ScrambleText
-                  text="Engineering systems, building real products, and operating at the intersection of technology, leadership, and execution."
-                  scrambleSpeed={120}
-                  revealDuration={2500}
-                />
+                Engineering systems, building real products, and operating at the intersection of technology, leadership, and execution.
               </div>
 
               {/* Authority Badges */}
@@ -103,25 +98,13 @@ export default function About() {
                 className="space-y-6 text-gray-300/90 leading-relaxed"
               >
                 <p>
-                  <ScrambleText
-                    text="I am a Computer Science Engineer focused on building scalable full-stack and AI-driven applications using Python, React, and Firebase."
-                    scrambleSpeed={120}
-                    revealDuration={3000}
-                  />
+                  I am a Computer Science Engineer focused on building scalable full-stack and AI-driven applications using Python, React, and Firebase.
                 </p>
                 <p>
-                  <ScrambleText
-                    text="My technical foundation includes data structures, algorithms, system design, and applied machine learning."
-                    scrambleSpeed={140}
-                    revealDuration={3500}
-                  />
+                  My technical foundation includes data structures, algorithms, system design, and applied machine learning.
                 </p>
                 <p>
-                  <ScrambleText
-                    text="I enjoy solving real-world problems through thoughtful engineering and building products that are practical, stable, and production-ready."
-                    scrambleSpeed={160}
-                    revealDuration={4000}
-                  />
+                  I enjoy solving real-world problems through thoughtful engineering and building products that are practical, stable, and production-ready.
                 </p>
               </motion.div>
             </section>
@@ -131,7 +114,7 @@ export default function About() {
             ============================ */}
             <section className="grid md:grid-cols-2 gap-6">
               <div className="glass-dark p-6 rounded-lg border border-purple-500/30">
-                <h3 className="text-xl font-bold mb-3 text-white">Co-Founder — Softgame Studio</h3>
+                <h3 className="text-xl font-bold mb-3 text-white">Co-Founder — Soft Game Studio</h3>
                 <ul className="text-gray-300 text-sm space-y-2">
                   <li>• Overseeing operations & execution</li>
                   <li>• Full-stack development & deployment</li>

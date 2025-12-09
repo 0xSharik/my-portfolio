@@ -26,6 +26,8 @@ export const PortfolioBackground: React.FC<PortfolioBackgroundProps> = ({
   
   const [isHovering, setIsHovering] = React.useState(false);
   const [mousePos, setMousePos] = React.useState({ x: 0, y: 0 });
+  const [hoverIntensity, setHoverIntensity] = React.useState(0);
+  const originalColors = useRef({ wire: 0x00f2ff, solid: 0x000000 });
 
   // 1. The Core (Torus Knot)
   const geometryKnot = useMemo(() => {
@@ -99,7 +101,7 @@ export const PortfolioBackground: React.FC<PortfolioBackgroundProps> = ({
     });
   }, []);
 
-  // Mouse tracking
+  // Mouse and touch tracking
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       const windowHalfX = window.innerWidth / 2;
@@ -111,24 +113,146 @@ export const PortfolioBackground: React.FC<PortfolioBackgroundProps> = ({
       setMousePos({ x: mouseX, y: mouseY });
     };
 
+    // Touch move handler for mobile slide interactions
+    const handleTouchMove = (e: TouchEvent) => {
+      if (e.touches.length > 0) {
+        const windowHalfX = window.innerWidth / 2;
+        const windowHalfY = window.innerHeight / 2;
+        
+        const touch = e.touches[0];
+        const touchX = (touch.clientX - windowHalfX);
+        const touchY = (touch.clientY - windowHalfY);
+        
+        setMousePos({ x: touchX, y: touchY });
+      }
+    };
+
+    const handleClick = (e: MouseEvent) => {
+      const windowHalfX = window.innerWidth / 2;
+      const windowHalfY = window.innerHeight / 2;
+      
+      const mouseX = (e.clientX - windowHalfX);
+      const mouseY = (e.clientY - windowHalfY);
+      
+      // Check if click is near the model
+      const distance = Math.sqrt(mouseX * mouseX + mouseY * mouseY);
+      if (distance < 200 && knotMeshRef.current) {
+        // Create explosion effect
+        const explosion = () => {
+          if (coreGroupRef.current) {
+            coreGroupRef.current.scale.set(1.5, 1.5, 1.5);
+            setTimeout(() => {
+              if (coreGroupRef.current) {
+                coreGroupRef.current.scale.set(1, 1, 1);
+              }
+            }, 200);
+          }
+          
+          // Color burst
+          matWire.color.setHSL(Math.random(), 1, 0.7);
+          setTimeout(() => {
+            matWire.color.setHSL(0.5, 1, 0.5);
+          }, 300);
+          
+          // Particle explosion
+          if (particlesRef.current) {
+            const material = particlesRef.current.material as THREE.PointsMaterial;
+            material.size = 0.5;
+            material.opacity = 1;
+            setTimeout(() => {
+              if (particlesRef.current) {
+                const material = particlesRef.current.material as THREE.PointsMaterial;
+                material.size = 0.15;
+                material.opacity = 0.8;
+              }
+            }, 500);
+          }
+        };
+        
+        explosion();
+      }
+    };
+
+    // Touch start/end handlers for mobile tap interactions
+    const handleTouchStart = (e: TouchEvent) => {
+      if (e.touches.length > 0) {
+        const windowHalfX = window.innerWidth / 2;
+        const windowHalfY = window.innerHeight / 2;
+        
+        const touch = e.touches[0];
+        const touchX = (touch.clientX - windowHalfX);
+        const touchY = (touch.clientY - windowHalfY);
+        
+        // Check if touch is near the model
+        const distance = Math.sqrt(touchX * touchX + touchY * touchY);
+        if (distance < 200 && knotMeshRef.current) {
+          // Create explosion effect on touch
+          const explosion = () => {
+            if (coreGroupRef.current) {
+              coreGroupRef.current.scale.set(1.5, 1.5, 1.5);
+              setTimeout(() => {
+                if (coreGroupRef.current) {
+                  coreGroupRef.current.scale.set(1, 1, 1);
+                }
+              }, 200);
+            }
+            
+            // Color burst
+            matWire.color.setHSL(Math.random(), 1, 0.7);
+            setTimeout(() => {
+              matWire.color.setHSL(0.5, 1, 0.5);
+            }, 300);
+            
+            // Particle explosion
+            if (particlesRef.current) {
+              const material = particlesRef.current.material as THREE.PointsMaterial;
+              material.size = 0.5;
+              material.opacity = 1;
+              setTimeout(() => {
+                if (particlesRef.current) {
+                  const material = particlesRef.current.material as THREE.PointsMaterial;
+                  material.size = 0.15;
+                  material.opacity = 0.8;
+                }
+              }, 500);
+            }
+          };
+          
+          explosion();
+        }
+      }
+    };
+
+    // Add both mouse and touch event listeners
     window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
+    window.addEventListener('click', handleClick);
+    window.addEventListener('touchmove', handleTouchMove);
+    window.addEventListener('touchstart', handleTouchStart);
+
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('click', handleClick);
+      window.removeEventListener('touchmove', handleTouchMove);
+      window.removeEventListener('touchstart', handleTouchStart);
+    };
+  }, [matWire]);
 
   // Animation loop
   useFrame((state) => {
     const time = state.clock.elapsedTime;
     
     // 1. Smooth Scene Rotation
-    const targetX = mousePos.x * 0.0005;
-    const targetY = mousePos.y * 0.0005;
+    const targetX = mousePos.x * 0.0002;
+    const targetY = mousePos.y * 0.0002;
 
     if (coreGroupRef.current) {
-      coreGroupRef.current.rotation.y += 0.005;
-      coreGroupRef.current.rotation.x += 0.002;
+      // Base rotation
+      coreGroupRef.current.rotation.y += 0.003;
+      coreGroupRef.current.rotation.x += 0.001;
       
-      coreGroupRef.current.rotation.y += 0.05 * (targetX - coreGroupRef.current.rotation.y);
-      coreGroupRef.current.rotation.x += 0.05 * (targetY - coreGroupRef.current.rotation.x);
+      // Subtle mouse influence (not position-based)
+      coreGroupRef.current.rotation.y += targetX;
+      coreGroupRef.current.rotation.x += targetY;
     }
 
     // 2. Terrain Movement
@@ -158,21 +282,60 @@ export const PortfolioBackground: React.FC<PortfolioBackgroundProps> = ({
       if (intersects.length > 0) {
         if (!isHovering) {
           setIsHovering(true);
-          // Glitch color effect
-          matWire.color.setRGB(1, 0, 0.3);
+          setHoverIntensity(1);
         }
-        // Jitter effect
-        const jitter = 1 + Math.random() * 0.1;
+        
+        // Smooth intensity ramp up
+        setHoverIntensity(prev => Math.min(prev + 0.1, 1));
+        
+        // Enhanced color transition
+        const hue = 0.95 + hoverIntensity * 0.05; // Cyan to purple transition
+        const saturation = 1;
+        const lightness = 0.5 + hoverIntensity * 0.2;
+        matWire.color.setHSL(hue, saturation, lightness);
+        
+        // Dynamic scale with pulse effect
+        const baseScale = 1.05;
+        const pulse = Math.sin(time * 3) * 0.02 * hoverIntensity;
+        const targetScale = baseScale + pulse;
+        
         if (coreGroupRef.current) {
-          coreGroupRef.current.scale.set(jitter, jitter, jitter);
+          const currentScale = coreGroupRef.current.scale.x;
+          const newScale = currentScale + (targetScale - currentScale) * 0.15;
+          coreGroupRef.current.scale.set(newScale, newScale, newScale);
         }
+        
+        // Enhanced rotation on hover
+        if (coreGroupRef.current) {
+          coreGroupRef.current.rotation.z += 0.01 * hoverIntensity;
+        }
+        
+        // Particle burst effect
+        if (particlesRef.current && Math.random() < 0.1 * hoverIntensity) {
+          const material = particlesRef.current.material as THREE.PointsMaterial;
+          material.opacity = 0.3 + Math.random() * 0.5;
+          material.size = 0.15 + Math.random() * 0.1;
+        }
+        
       } else {
         if (isHovering) {
           setIsHovering(false);
-          // Reset color
-          matWire.color.setRGB(0, 0.9, 1);
+        }
+        
+        // Smooth intensity ramp down
+        setHoverIntensity(prev => Math.max(prev - 0.05, 0));
+        
+        // Reset colors smoothly
+        if (hoverIntensity < 0.1) {
+          matWire.color.setHSL(0.5, 1, 0.5); // Reset to cyan
           if (coreGroupRef.current) {
             coreGroupRef.current.scale.set(1, 1, 1);
+          }
+          // Reset particles
+          if (particlesRef.current) {
+            const material = particlesRef.current.material as THREE.PointsMaterial;
+            material.opacity = 0.8;
+            material.size = 0.15;
           }
         }
       }
@@ -195,9 +358,9 @@ export const PortfolioBackground: React.FC<PortfolioBackgroundProps> = ({
       <pointLight position={[-10, -10, 20]} intensity={2} color={CONFIG.colorB} distance={50} />
 
       {/* Core Group */}
-      <group ref={coreGroupRef}>
-        <mesh ref={knotMeshRef} geometry={geometryKnot} material={matSolid} />
-        <mesh geometry={geometryKnot} material={matWire} />
+      <group ref={coreGroupRef} position={[0, 0, 0]}>
+        <mesh ref={knotMeshRef} geometry={geometryKnot} material={matSolid} position={[0, 0, 0]} />
+        <mesh geometry={geometryKnot} material={matWire} position={[0, 0, 0]} />
       </group>
 
       {/* Digital Terrain */}

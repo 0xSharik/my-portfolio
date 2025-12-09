@@ -9,7 +9,7 @@ interface ProjectCardProps {
 }
 
 export function ProjectCard({ project, onClick }: ProjectCardProps) {
-  const isSoftgame = project.id === "softgame-studio";
+  const isSoftgame = project.id === "softgame-studio"  || project.id === "portfolio" ;
 
   // Categorize tech stack
   const aiTechs = project.techStack.filter(tech => 
@@ -147,7 +147,7 @@ export function ProjectCard({ project, onClick }: ProjectCardProps) {
                 LIVE
             </span>
             <span className="px-2 py-1 rounded-full text-xs" style={{ color: '#DA70D6', backgroundColor: 'rgba(218, 112, 214, 0.1)', border: '1px solid rgba(218, 112, 214, 0.3)'}}>
-                Founder Project
+                Main Project
             </span>
           </div>
         )}

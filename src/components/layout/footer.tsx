@@ -42,7 +42,7 @@ export function Footer() {
                   rel="noopener noreferrer"
                   className="text-cyan-400 hover:text-cyan-300 text-sm transition-colors"
                 >
-                  Co-Founder @ Softgame Studio
+                  Co-Founder @ Soft Game Studio
                 </a>
               </div>
               <div className="mt-2 text-gray-400 text-sm">

@@ -212,10 +212,10 @@ export const portfolioContentMock: PortfolioContent = {
   projects: [
     {
       id: "softgame-studio",
-      name: "Softgame Studio",
+      name: "Soft Game Studio",
       shortDescription: "A production-focused startup building scalable web platforms, real-world systems, and client-ready products beyond academic projects.",
       longDescription:
-        "Softgame Studio is a startup focused on building real-world software products including web apps, backend systems, automation tools, and scalable platforms. As Co-Founder, I lead the core engineering, deployment workflows, and system architecture. The studio focuses on turning raw ideas into production-grade products used by real users.\n\n**Key Responsibilities:**\n\n*   Leading system architecture and backend design\n*   Full-stack development and production deployment\n*   Managing product execution and delivery pipelines\n*   Building scalable systems beyond academic scope",
+        "Soft Game Studio is a startup focused on building real-world software products including web apps, backend systems, automation tools, and scalable platforms. As Co-Founder, I lead the core engineering, deployment workflows, and system architecture. The studio focuses on turning raw ideas into production-grade products used by real users.\n\n**Key Responsibilities:**\n\n*   Leading system architecture and backend design\n*   Full-stack development and production deployment\n*   Managing product execution and delivery pipelines\n*   Building scalable systems beyond academic scope",
       techStack: ["React", "Next.js", "Firebase", "Python", "Flask", "Node.js", "Tailwind", "Cloud Hosting"],
       role: "Co-Founder & Lead Engineer",
       year: 2025,
@@ -360,7 +360,7 @@ export const portfolioContentMock: PortfolioContent = {
         "Live deployment on Vercel for instant access",
         "Minimal dependencies — optimized for performance and simplicity",
       ],
-      featured: true,
+      featured: false,
     },
     {
       id: "pdf-compressor",

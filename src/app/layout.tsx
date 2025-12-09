@@ -13,17 +13,25 @@ import { CustomCursor } from "@/components/atoms/custom-cursor";
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
+  display: "swap",
+  preload: false,
+  weight: ["400", "700"],
 });
 
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-space-grotesk",
   subsets: ["latin"],
   weight: ["400", "700"],
+  display: "swap",
+  preload: false,
 });
 
 const firaCode = Fira_Code({
   variable: "--font-fira-code",
   subsets: ["latin"],
+  display: "swap",
+  preload: false,
+  weight: ["400"],
 });
 
 export const metadata: Metadata = {

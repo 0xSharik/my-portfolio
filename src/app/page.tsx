@@ -1,20 +1,46 @@
 "use client";
 
-import { useEffect } from "react";
+
+import { useEffect, useState } from "react";
 import { gsap } from "gsap";
 import { useRouter } from "next/navigation";
+import { useRouteTransition } from "@/hooks/use-route-transition";
 import { portfolioContentMock } from "@/config/portfolio-data";
 import { ScrambleText } from "@/components/ui/scramble-text";
 
 export default function Home() {
   const router = useRouter();
+  const { isTransitioning, startTransition, endTransition } = useRouteTransition();
 
   const { name, heroStats, projects } = portfolioContentMock;
+
+  // Emergency opacity reset - runs immediately on mount
+  useEffect(() => {
+    const resetOpacity = () => {
+      const element = document.getElementById("ui-layer");
+      if (element) {
+        gsap.killTweensOf("#ui-layer");
+        gsap.set("#ui-layer", { opacity: 1 });
+      }
+    };
+
+    resetOpacity();
+    
+    // Also reset after a short delay to ensure it's visible
+    const timer = setTimeout(resetOpacity, 100);
+    
+    return () => clearTimeout(timer);
+  }, []);
 
   // ================================
   // Page Load Fade
   // ================================
   useEffect(() => {
+    // Force immediate opacity reset
+    gsap.killTweensOf("#ui-layer");
+    gsap.set("#ui-layer", { opacity: 1 });
+    
+    // Then do the fade-in animation
     gsap.fromTo(
       "#ui-layer",
       { opacity: 0 },
@@ -26,10 +52,21 @@ export default function Home() {
   // Page Exit Transition
   // ================================
   const handleNavigate = (path: string) => {
+    if (isTransitioning) return; // Prevent multiple simultaneous navigations
+    
+    startTransition(path);
+    
+    // Kill any existing animations on #ui-layer
+    gsap.killTweensOf("#ui-layer");
+    
     gsap.to("#ui-layer", {
       opacity: 0,
       duration: 0.4,
-      onComplete: () => router.push(path),
+      onComplete: () => {
+        router.push(path);
+        // End transition after a short delay
+        setTimeout(() => endTransition(), 100);
+      },
     });
   };
 
@@ -63,7 +100,7 @@ export default function Home() {
   return (
     <div
       id="ui-layer"
-      className="relative z-10 min-h-screen pt-20 px-4"
+      className="relative z-10 min-h-screen pt-20"
       style={{ opacity: 0 }}
     >
       {/* ================= HERO ================= */}
@@ -89,7 +126,7 @@ export default function Home() {
 
             <p className="text-lg text-gray-300 mb-3">
               <ScrambleText
-                text="Co-Founder — Softgame Studio"
+                text="Co-Founder — Soft Game Studio"
                 scrambleSpeed={140}
                 revealDuration={3200}
               />

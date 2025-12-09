@@ -2,11 +2,13 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { useRouteTransition } from "@/hooks/use-route-transition";
 import { gsap } from "gsap";
-import { X, Menu } from "lucide-react";
+import { X, Menu, Eye, EyeOff } from "lucide-react";
 
 export function Navbar() {
   const router = useRouter();
+  const { isTransitioning, startTransition, endTransition, isContentVisible, toggleContentVisibility } = useRouteTransition();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -21,11 +23,22 @@ export function Navbar() {
   }, []);
 
   const handleNavigate = (path: string) => {
+    if (isTransitioning) return; // Prevent multiple simultaneous navigations
+    
+    startTransition(path);
     setIsMobileMenuOpen(false);
+    
+    // Kill any existing animations on #ui-layer
+    gsap.killTweensOf("#ui-layer");
+    
     gsap.to("#ui-layer", {
       opacity: 0,
       duration: 0.4,
-      onComplete: () => router.push(path),
+      onComplete: () => {
+        router.push(path);
+        // End transition after a short delay
+        setTimeout(() => endTransition(), 100);
+      },
     });
   };
 
@@ -135,6 +148,48 @@ export function Navbar() {
                     />
                   </button>
                 ))}
+                
+                {/* Canvas Toggle Button for Mobile */}
+                <button
+                  onClick={toggleContentVisibility}
+                  className="relative group block text-3xl font-light transition-all duration-500"
+                  style={{
+                    color: "rgba(168, 85, 247, 0.9)",
+                    letterSpacing: "0.15em",
+                    transform: `translateY(${isMobileMenuOpen ? "0" : "30px"})`,
+                    opacity: isMobileMenuOpen ? 1 : 0,
+                    transitionDelay: `${4 * 150}ms`,
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.color = "#a855f7";
+                    e.currentTarget.style.transform = "scale(1.1) translateY(-2px)";
+                    e.currentTarget.style.textShadow = "0 0 20px rgba(168, 85, 247, 0.5)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.color = "rgba(168, 85, 247, 0.9)";
+                    e.currentTarget.style.transform = "scale(1) translateY(0)";
+                    e.currentTarget.style.textShadow = "none";
+                  }}
+                >
+                  <span className="relative  z-10 flex items-center justify-center gap-2">
+                    {isContentVisible ? <EyeOff size={20} /> : <Eye size={20} />}
+                    CANVAS
+                  </span>
+                  {/* Hover underline */}
+                  <div 
+                    className="absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-purple-400 to-purple-600 transition-all duration-300"
+                    style={{
+                      width: '0%',
+                      transition: 'width 0.3s ease',
+                    }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.width = '100%';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.width = '0%';
+                      }}
+                    />
+                </button>
               </div>
 
               {/* Social Links */}
@@ -237,6 +292,20 @@ export function Navbar() {
                   {path === "/" ? "HOME" : path.substring(1).toUpperCase()}
                 </button>
               ))}
+              
+              {/* Canvas Toggle Button */}
+              <button
+                onClick={toggleContentVisibility}
+                className={`self-end transition-all duration-500 ${
+                  isScrolled
+                    ? "text-purple-400 hover:text-purple-300 px-2 py-1 rounded-md text-xs font-medium border border-purple-500/30"
+                    : "text-purple-400 hover:text-purple-300 px-3 py-2 rounded-md text-sm font-medium border border-purple-500/30"
+                } transition-colors flex items-center gap-1`}
+                title={isContentVisible ? "Hide Content" : "Show Content"}
+              >
+                {isContentVisible ? <EyeOff size={14} /> : <Eye size={14} />}
+                {isScrolled ? "" : "CANVAS"}
+              </button>
             </div>
           </div>
 
