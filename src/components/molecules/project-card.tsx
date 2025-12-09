@@ -9,6 +9,8 @@ interface ProjectCardProps {
 }
 
 export function ProjectCard({ project, onClick }: ProjectCardProps) {
+  const isSoftgame = project.id === "softgame-studio";
+
   // Categorize tech stack
   const aiTechs = project.techStack.filter(tech => 
     ['TensorFlow', 'TensorFlow Lite', 'OpenAI API', 'NumPy', 'Pandas', 'Python'].includes(tech)
@@ -42,31 +44,57 @@ export function ProjectCard({ project, onClick }: ProjectCardProps) {
 
   const primaryMetric = getPrimaryMetric();
 
+  const softgameCardStyle = {
+    background: 'linear-gradient(180deg, rgba(0,0,0,0.96), rgba(0,0,0,1))',
+    backdropFilter: 'blur(12px)',
+    border: '1px solid transparent',
+    backgroundClip: 'padding-box, border-box',
+    backgroundOrigin: 'padding-box, border-box',
+    backgroundImage: `
+      linear-gradient(180deg, rgba(0,0,0,0.96), rgba(0,0,0,1)),
+      linear-gradient(45deg, rgba(255, 215, 0, 0.5), rgba(255, 165, 0, 0.4))
+    `,
+    boxShadow: '0 20px 60px rgba(0, 0, 0, 0.9), 0 -8px 32px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 215, 0, 0.2), inset 0 1px 0 rgba(255, 215, 0, 0.2), 0 0 40px rgba(255, 215, 0, 0.25)',
+    position: 'relative' as 'relative',
+    borderRadius: '1rem',
+    overflow: 'hidden',
+  };
+
+  const defaultCardStyle = {
+    background: 'linear-gradient(180deg, rgba(0,0,0,0.96), rgba(0,0,0,1))',
+    backdropFilter: 'blur(12px)',
+    border: '1px solid transparent',
+    backgroundClip: 'padding-box, border-box',
+    backgroundOrigin: 'padding-box, border-box',
+    backgroundImage: `
+      linear-gradient(180deg, rgba(0,0,0,0.96), rgba(0,0,0,1)),
+      linear-gradient(45deg, rgba(0, 242, 255, 0.4), rgba(112, 0, 255, 0.4))
+    `,
+    boxShadow: '0 20px 60px rgba(0, 0, 0, 0.9), 0 -8px 32px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 0 40px rgba(0, 242, 255, 0.15)',
+    position: 'relative' as 'relative',
+    borderRadius: '1rem',
+    overflow: 'hidden',
+  };
+
+  const softgameHoverStyle = {
+    y: -4,
+    boxShadow: '0 20px 60px rgba(0, 0, 0, 0.9), 0 0 0 2px rgba(255, 215, 0, 0.4), inset 0 1px 0 rgba(255, 215, 0, 0.4), 0 0 30px rgba(255, 215, 0, 0.3)',
+    transition: { duration: 0.2 }
+  };
+  
+  const defaultHoverStyle = {
+    y: -4,
+    boxShadow: '0 20px 60px rgba(0, 0, 0, 0.9), 0 0 0 2px rgba(0, 242, 255, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 0 30px rgba(0, 242, 255, 0.2)',
+    transition: { duration: 0.2 }
+  };
+
   return (
     <motion.div
       layoutId={`project-card-${project.id}`}
       onClick={onClick}
       className="relative w-full max-w-xl rounded-2xl p-6 cursor-pointer overflow-hidden"
-      style={{
-        background: 'linear-gradient(180deg, rgba(0,0,0,0.96), rgba(0,0,0,1))',
-        backdropFilter: 'blur(12px)',
-        border: '1px solid transparent',
-        backgroundClip: 'padding-box, border-box',
-        backgroundOrigin: 'padding-box, border-box',
-        backgroundImage: `
-          linear-gradient(180deg, rgba(0,0,0,0.96), rgba(0,0,0,1)),
-          linear-gradient(45deg, rgba(0, 242, 255, 0.4), rgba(112, 0, 255, 0.4))
-        `,
-        boxShadow: '0 20px 60px rgba(0, 0, 0, 0.9), 0 -8px 32px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 0 40px rgba(0, 242, 255, 0.15)',
-        position: 'relative',
-        borderRadius: '1rem',
-        overflow: 'hidden',
-      }}
-      whileHover={{
-        y: -4,
-        boxShadow: '0 20px 60px rgba(0, 0, 0, 0.9), 0 0 0 2px rgba(0, 242, 255, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 0 30px rgba(0, 242, 255, 0.2)',
-        transition: { duration: 0.2 }
-      }}
+      style={isSoftgame ? softgameCardStyle : defaultCardStyle}
+      whileHover={isSoftgame ? softgameHoverStyle : defaultHoverStyle}
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ 
@@ -80,7 +108,7 @@ export function ProjectCard({ project, onClick }: ProjectCardProps) {
           className="text-xl font-semibold text-white tracking-wide"
           style={{
             letterSpacing: '0.02em',
-            textShadow: '0 0 12px rgba(0, 242, 255, 0.25)',
+            textShadow: isSoftgame ? '0 0 12px rgba(255, 215, 0, 0.35)' : '0 0 12px rgba(0, 242, 255, 0.25)',
           }}
         >
           {project.name}
@@ -112,6 +140,17 @@ export function ProjectCard({ project, onClick }: ProjectCardProps) {
           </a>
         )}
       </div>
+
+      {isSoftgame && (
+          <div className="mt-2 flex items-center gap-2">
+            <span className="px-2 py-1 rounded-full text-xs font-bold" style={{ color: '#FFD700', backgroundColor: 'rgba(255, 215, 0, 0.1)', border: '1px solid rgba(255, 215, 0, 0.3)'}}>
+                LIVE
+            </span>
+            <span className="px-2 py-1 rounded-full text-xs" style={{ color: '#DA70D6', backgroundColor: 'rgba(218, 112, 214, 0.1)', border: '1px solid rgba(218, 112, 214, 0.3)'}}>
+                Founder Project
+            </span>
+          </div>
+        )}
 
       {/* Description with visual containment */}
       <div 
@@ -196,32 +235,55 @@ export function ProjectCard({ project, onClick }: ProjectCardProps) {
       {/* Footer Meta with disciplined alignment */}
       <div className="mt-5 flex items-center justify-between text-xs" style={{ color: 'rgba(255, 255, 255, 0.5)' }}>
         <div className="flex items-center gap-4" style={{ fontSize: '0.75rem', lineHeight: '1rem' }}>
-          {primaryMetric && <span>{primaryMetric}</span>}
+          {!isSoftgame && primaryMetric && <span>{primaryMetric}</span>}
           <span>{project.year ?? new Date().getFullYear()}</span>
           {hasRealTime && <span style={{ color: '#00f2ff' }}>Real-time</span>}
           {aiTechs.length > 0 && <span style={{ color: '#00f2ff' }}>ML</span>}
         </div>
 
-        <button
-          className="text-white hover:text-cyan-400 font-medium transition-all duration-200"
-          onClick={(e) => {
-            e.stopPropagation();
-            onClick();
-          }}
-          style={{
-            transition: 'all 0.2s ease'
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.transform = 'translateY(-2px)';
-            e.currentTarget.style.textShadow = '0 0 8px rgba(0, 242, 255, 0.5)';
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.transform = 'translateY(0)';
-            e.currentTarget.style.textShadow = 'none';
-          }}
-        >
-          View Case Study →
-        </button>
+        {isSoftgame && project.liveUrl ? (
+          <a
+            href={project.liveUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={(e) => e.stopPropagation()}
+            className="text-white hover:text-yellow-300 font-medium transition-all duration-200"
+            style={{
+              transition: 'all 0.2s ease'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = 'translateY(-2px)';
+              e.currentTarget.style.textShadow = '0 0 8px rgba(255, 215, 0, 0.5)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = 'translateY(0)';
+              e.currentTarget.style.textShadow = 'none';
+            }}
+          >
+            Visit Startup Website →
+          </a>
+        ) : (
+          <button
+            className="text-white hover:text-cyan-400 font-medium transition-all duration-200"
+            onClick={(e) => {
+              e.stopPropagation();
+              onClick();
+            }}
+            style={{
+              transition: 'all 0.2s ease'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = 'translateY(-2px)';
+              e.currentTarget.style.textShadow = '0 0 8px rgba(0, 242, 255, 0.5)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = 'translateY(0)';
+              e.currentTarget.style.textShadow = 'none';
+            }}
+          >
+            View Case Study →
+          </button>
+        )}
       </div>
     </motion.div>
   );

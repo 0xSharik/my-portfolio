@@ -35,6 +35,19 @@ export function Footer() {
               <p className="text-gray-300 text-sm leading-relaxed">
                 Computer Science Engineer passionate about building innovative solutions.
               </p>
+              <div className="mt-3">
+                <a 
+                  href="https://softgamestudios.web.app/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-cyan-400 hover:text-cyan-300 text-sm transition-colors"
+                >
+                  Co-Founder @ Softgame Studio
+                </a>
+              </div>
+              <div className="mt-2 text-gray-400 text-sm">
+                Management Team — CU Defence Club
+              </div>
               <div className="mt-4 flex items-center space-x-4">
                 <div className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse"></div>
                 <span className="text-cyan-400 text-xs font-mono">AVAILABLE FOR WORK</span>
@@ -52,6 +65,7 @@ export function Footer() {
               <div className="space-y-3">
                 {[
                   { name: "Home", path: "/" },
+                  {name: "About", path: "/about"},
                   { name: "Projects", path: "/projects" },
                   { name: "Contact", path: "/contact" }
                 ].map((link) => (

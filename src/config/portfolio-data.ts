@@ -211,16 +211,29 @@ export const portfolioContentMock: PortfolioContent = {
 
   projects: [
     {
-      id: "realtime-portfolio",
-      name: "Realtime 3D Portfolio",
-      shortDescription: "A Next.js + React Three Fiber portfolio with a persistent 3D background and interactive tech scene.",
+      id: "softgame-studio",
+      name: "Softgame Studio",
+      shortDescription: "A production-focused startup building scalable web platforms, real-world systems, and client-ready products beyond academic projects.",
       longDescription:
-        "A developer portfolio that visualizes skills and projects as a live computational environment using React Three Fiber, custom shaders, and advanced UI animations.",
-      techStack: ["Next.js", "React", "TypeScript", "React Three Fiber", "Framer Motion"],
+        "Softgame Studio is a startup focused on building real-world software products including web apps, backend systems, automation tools, and scalable platforms. As Co-Founder, I lead the core engineering, deployment workflows, and system architecture. The studio focuses on turning raw ideas into production-grade products used by real users.\n\n**Key Responsibilities:**\n\n*   Leading system architecture and backend design\n*   Full-stack development and production deployment\n*   Managing product execution and delivery pipelines\n*   Building scalable systems beyond academic scope",
+      techStack: ["React", "Next.js", "Firebase", "Python", "Flask", "Node.js", "Tailwind", "Cloud Hosting"],
+      role: "Co-Founder & Lead Engineer",
+      year: 2025,
+      liveUrl: "https://softgamestudios.web.app/",
+      metrics: ["Live Startup", "Founder Project", "Production Systems", "Startup Platform"],
+      featured: true,
+    },
+    {
+      id: "portfolio",
+      name: "0xSharik Portfolio",
+      shortDescription: "A high-performance, animated developer portfolio showcasing real-world projects, startup work, and engineering depth with production-grade UI/UX.",
+      longDescription:
+        "This portfolio is a fully custom-built personal platform designed to present my engineering work, startup leadership, and technical expertise with clarity and impact. It features advanced UI animations, custom transitions, cinematic visual layers, and modular project architecture. The site is optimized for performance, scalability, and brand identity while serving as a live demonstration of my frontend, animation, and system design skills.",
+      techStack: ["Next.js", "React", "TypeScript", "Vercel", "Framer Motion"],
       role: "Designed and implemented the full stack, from 3D scene architecture to UI components.",
       year: 2025,
-      repoUrl: "https://github.com/your-username/realtime-portfolio",
-      liveUrl: "https://your-portfolio-url.dev",
+      repoUrl: "https://github.com/0xSharik/my-portfolio",
+      liveUrl: "https://0xsharik-portfolio.vercel.app/",
       metrics: [
         "90+ Lighthouse performance score",
         "Sub-2s Time to Interactive on desktop",
