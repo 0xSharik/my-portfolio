@@ -11,11 +11,19 @@ interface ProjectModalProps {
 }
 
 export function ProjectModal({ project, onClose }: ProjectModalProps) {
-    useEffect(() => {
+  useEffect(() => {
+    // Lock body scroll and prevent background scrolling
+    if (typeof window === "undefined") return;
+    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+    const prevOverflow = document.body.style.overflow;
+    const prevPaddingRight = document.body.style.paddingRight;
+
     document.body.style.overflow = "hidden";
+    if (scrollbarWidth > 0) document.body.style.paddingRight = `${scrollbarWidth}px`;
 
     return () => {
-      document.body.style.overflow = "auto";
+      document.body.style.overflow = prevOverflow || "auto";
+      document.body.style.paddingRight = prevPaddingRight || "0px";
     };
   }, []);
 
@@ -38,15 +46,15 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
   initial={{ opacity: 0 }}
   animate={{ opacity: 1 }}
   exit={{ opacity: 0 }}
-  className="fixed inset-0 z-50 bg-black/90 backdrop-blur-xl"
+  className="fixed inset-0 z-50 bg-black/90 backdrop-blur-xl flex items-center justify-center p-4"
   onClick={onClose}
+  onWheel={(e) => e.stopPropagation()}
+  style={{ overscrollBehavior: "contain" }}
 >
- 
-<div className="flex items-center justify-center w-full h-full">
         <motion.div
           layoutId={`project-card-${project.id}`}
           onClick={(e) => e.stopPropagation()}
-            className="relative w-full max-w-3xl max-h-[75vh] cursor-pointer"
+          className="relative w-full max-w-3xl max-h-[85vh] overflow-hidden"
           style={{
             background: 'linear-gradient(180deg, rgba(0,0,0,0.96), rgba(0,0,0,1))',
             backdropFilter: 'blur(12px)',
@@ -62,20 +70,6 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
             padding: '32px',
           }}
         >
-          {/* Scrollable content container */}
-          <div
-  className="overflow-y-auto pr-2"
-  style={{
-    maxHeight: "calc(75vh - 64px)",
-    overscrollBehavior: "contain",
-    WebkitOverflowScrolling: "touch"
-  }}
-  onClick={(e) => e.stopPropagation()}
->
-
-
-            {/* Remove inner border layer since we're using background-image approach */}
-
           {/* Enhanced close button */}
           <button
             onClick={onClose}
@@ -102,6 +96,21 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
           >
             <X size={24} />
           </button>
+
+          {/* Scrollable content container */}
+          <div
+  className="overflow-y-auto overflow-x-hidden pr-6"
+  style={{
+    maxHeight: "calc(75vh - 64px)",
+    overscrollBehavior: "contain",
+    WebkitOverflowScrolling: "touch",
+    scrollbarWidth: "thin",
+    scrollbarColor: "rgba(0, 242, 255, 0.3) transparent"
+  }}
+  onClick={(e) => e.stopPropagation()}
+>
+
+            {/* Remove inner border layer since we're using background-image approach */}
 
           <div className="space-y-8">
             {/* Title with anchor glow */}
@@ -265,7 +274,7 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
                       }}
                     >
                       <div 
-                        className="w-2 h-2 rounded-full flex-shrink-0"
+                        className="w-2 h-2 rounded-full shrink-0"
                         style={{
                           background: 'linear-gradient(45deg, #00f2ff, #7000ff)',
                           boxShadow: '0 0 8px rgba(0, 242, 255, 0.5)',
@@ -343,7 +352,6 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
           </div>
           </div>
         </motion.div>
-              </div>   
       </motion.div>
     </AnimatePresence>
   );

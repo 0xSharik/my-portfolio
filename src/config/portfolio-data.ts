@@ -18,6 +18,7 @@ export interface Project {
   longDescription: string;
   techStack: string[];
   role: string;
+  year?: string | number;
   liveUrl?: string;
   repoUrl?: string;
   metrics?: string[];
@@ -217,6 +218,7 @@ export const portfolioContentMock: PortfolioContent = {
         "A developer portfolio that visualizes skills and projects as a live computational environment using React Three Fiber, custom shaders, and advanced UI animations.",
       techStack: ["Next.js", "React", "TypeScript", "React Three Fiber", "Framer Motion"],
       role: "Designed and implemented the full stack, from 3D scene architecture to UI components.",
+      year: 2025,
       repoUrl: "https://github.com/your-username/realtime-portfolio",
       liveUrl: "https://your-portfolio-url.dev",
       metrics: [
@@ -233,10 +235,174 @@ export const portfolioContentMock: PortfolioContent = {
         "A full-stack web platform for managing Homeowners Associations, enabling residents and administrators to handle announcements, documents, complaints, and community operations through a centralized digital system with automated communication",
       techStack: ["React", "Node.js", "Firebase", "Firestore", "Email Service", "Tailwind CSS"],
       role: "Designed and developed the complete full-stack architecture including frontend UI, backend APIs, database structure, authentication, email notification system, and deployment. Handled security, performance optimization, and responsive design.",
+      year: 2025,
       repoUrl: "https://github.com/your-username/ml-dashboard",
       liveUrl: "https://hoa-us.web.app/home",
       metrics: ["Live production deployment with real users", "Automated email notifications for complaints & updates", "Multi-role access control (Admin, Residents)","Centralized document, notice, and complaint management","Real-time data updates with secure authentication"],
     },
+    {
+      id: "teckathon-cu-data-management",
+      name: "Teckathon-CU Data Management Platform",
+      shortDescription:
+        "A Firebase-based form data management system with secure authentication, category-wise sorting, and one-click Excel export.",
+      longDescription:
+        "Teckathon-CU is a hobby-built data handling web platform focused on securely collecting and organizing structured form submissions. It uses Firebase Authentication for secure user access and dynamically sorts submitted data based on form categories. The platform allows administrators to instantly export category-wise datasets into Excel sheets, converting raw form inputs into clean, usable business data. The project demonstrates practical full-stack thinking with a strong focus on real-world data workflows.",
+      techStack: ["Firebase", "React", "JavaScript", "Firebase Authentication", "Firestore "],
+      role:
+        "Independently designed and developed the complete system including frontend UI, Firebase authentication, real-time database integration, category-based data sorting logic, and Excel export functionality.",
+      year: 2025,
+      metrics: [
+        "Secure user authentication with protected routes",
+        "Dynamic form data categorization",
+        "One-click Excel export based on form category",
+        "Real-time database updates",
+        "Scalable structure for multi-form data handling",
+      ],
+    },
+    {
+      id: "custudyhub",
+      name: "CuStudyHub — Open Peer-to-Peer Study Sharing Platform",
+      shortDescription:
+        "An open study-material sharing platform where students upload resources without logging in, and verified content is published after admin approval.",
+      longDescription:
+        "CuStudyHub is a peer-to-peer study material sharing platform designed for zero-friction access. Students can upload documents without creating an account, after which submissions go through an admin verification process to ensure quality and authenticity. Once approved, materials are published publicly for everyone to browse and download. The platform includes automatic file compression for optimized storage and fast delivery, along with a clean and responsive frontend. Additional features and updates can be explored on the live site.",
+      techStack: [
+        "React ",
+        "Firebase (Firestore, Storage)",
+        "File compression pipeline",
+        "JavaScript / TypeScript",
+        "Responsive UI",
+        "Cloud storage & data pipelines",
+      ],
+      role:
+        "Full-stack developer — built upload workflow, admin verification system, file compression, cloud storage integration, public document browsing interface, and complete frontend architecture.",
+      liveUrl: "https://custudyhub.web.app/",
+      year: 2025,
+      metrics: [
+        "No-login uploads with admin verification",
+        "Automatic file compression for optimized performance",
+        "Secure cloud storage with public access",
+        "Clean, responsive UI for upload and browsing",
+        "Scalable document management system",
+      ],
+    },
+    {
+      id: "onepice-club",
+      name: "Onepice-Club — Community Membership Platform",
+      shortDescription: "A community-driven fan platform with full admin control to manage members, content, and access in real time.",
+      longDescription:
+        "Onepice-Club is a full-stack community platform designed to manage and showcase fan membership through a controlled backend system. The application allows administrators to add, edit, and delete member records securely, ensuring complete control over community data. The frontend is built for fast browsing, responsive interaction, and clean presentation, while the backend handles structured data updates in real time. The project demonstrates strong fundamentals in CRUD operations, state handling, admin access control, and deployment pipelines, making it both a functional product and a solid engineering showcase.",
+      techStack: [ "React", "Firebase (Database + Hosting)", "JavaScript", "Tailwind CSS"],
+      role: "Full-stack Developer — designed the UI, built member management backend (CRUD), connected real-time updates, handled deployment, and structured the project architecture.",
+      liveUrl: "https://onepice-club.vercel.app/about",
+      year: 2025,
+      metrics: [
+        "Admin can Add, Edit, and Delete members from backend",
+        "Real-time data updates on the frontend",
+        "Fully responsive UI for all devices",
+        "Secure data handling and access control",
+        "Optimized hosting with fast global delivery",
+      ],
+    },
+    {
+      id: "library-navigation-app",
+      name: "Library Navigation App",
+      shortDescription: "Mobile app to search, locate, and explore library books with a clean, theme-aware interface powered by Firebase.",
+      longDescription:
+        "Library Navigation App is a React Native / Expo application that lets users quickly search and browse a library’s book collection using a responsive, mobile-first interface. It pulls book data from Firestore and supports fast filtering by title and author, while also surfacing location metadata so users can see where a book lives inside the library. The app is wired to Firebase for both authentication and data access, with Firestore as the primary store for the books collection. A custom theme context powers light/dark mode, making the UI adaptable to user preference and more suitable for long reading or browsing sessions.",
+      techStack: [
+        "React Native",
+        "Expo",
+        "React Navigation",
+        "Firebase (Auth, Firestore)",
+        "React Context (ThemeContext)",
+      ],
+      role: "Sole developer: architecture, Firebase integration, navigation, theme system, and UI.",
+      liveUrl: "https://librexx.vercel.app/",
+      repoUrl: "https://github.com/0xSharik/LibraryNavigationApp",
+      year: 2025,
+      metrics: [
+        "Searchable library catalog with filtering by title and author",
+        "Book cards showing title, author and location metadata",
+        "Firebase-backed data layer using Firestore",
+        "Integrated Firebase Auth with AsyncStorage persistence",
+        "Theme toggling via custom ThemeContext",
+      ],
+    },
+    {
+      id: "single-page-portfolio-template",
+      name: "Single-Page Portfolio Template",
+      shortDescription: "A sleek, responsive single-page portfolio template built with modern web technologies and ready for deployment.",
+      longDescription:
+        "Single-Page Portfolio Template is a clean, minimalist SPA template designed for developers to showcase their work. It features responsive design, smooth navigation, and modular sections (hero, about, projects, contact) — making it ideal as a base for personal portfolios. The project demonstrates proficiency in modern frontend tooling, deployment workflows, and project structuring for maintainable web apps.",
+      techStack: ["React", "TypeScript", "CSS", "HTML5", "Vercel Hosting", "GitHub"],
+      role: "Creator & Maintainer — built the layout, styling, responsiveness, routing structure, and deployment configuration. Ensured clean codebase and ease of customization for future use.",
+      year: 2025,
+      liveUrl: "https://single-page-portfolio-template.vercel.app/",
+      repoUrl: "https://github.com/0xSharik/single-page-portfolio",
+      metrics: [
+        "Single-page layout with smooth section navigation",
+        "Fully responsive across devices (desktop, tablet, mobile)",
+        "Clean modular codebase for easy customization",
+        "Live deployment on Vercel for instant access",
+        "Minimal dependencies — optimized for performance and simplicity",
+      ],
+      featured: true,
+    },
+    {
+      id: "pdf-compressor",
+      name: "PDF Compressor (Python)",
+      shortDescription: "A Python-based utility to compress PDF files, optimizing for size without losing readability — useful for sharing and storage efficiency.",
+      longDescription:
+        "PDF Compressor is a lightweight Python tool that reduces PDF file sizes while preserving document quality, making file transfers and storage easier. It's designed for simplicity and speed: just feed it a PDF, and it outputs an optimized version. The tool supports batch processing and is ideal for students or developers who need to compress documents before sharing or archival.",
+      techStack: ["Python", "PyPDF2", "Command-line interface", "File I/O"],
+      role: "Author & Maintainer — wrote the core compression logic, handled file I/O, optimized compression parameters, and managed distribution and documentation of the tool.",
+      year: 2025,
+      metrics: [
+        "Compresses PDF files to reduce size",
+        "Maintains readability and original layout",
+        "Batch processing support for multiple files at once",
+        "Easy to use — just run from command line",
+        "Useful for document-heavy workflows, sharing or archiving PDFs",
+      ],
+    },
+    {
+      id: "attendance-management-mini-project",
+      name: "Attendance Management Mini-Project",
+      shortDescription: "A lightweight attendance tracking system that logs, manages, and displays attendance records with minimal setup — ideal for classrooms or small teams.",
+      longDescription:
+        "This project implements a simple Attendance Management system that allows administrators to register users and record their attendance over time. It handles CRUD operations for user data and attendance logs, organizes records efficiently, and provides an interface to view, filter, and export attendance data. The system demonstrates core back-end logic, data management, and basic UI work — offering a practical solution for tracking attendance without complex overhead.",
+      techStack: ["Python", "Database", "HTML/CSS", "CRUD backend"],
+      role: "Developer & Maintainer — implemented database schema, CRUD backend operations, attendance logging logic, and front-end interface for data display and management.",
+      year: 2025,
+      repoUrl: "https://github.com/0xSharik/attendance-management-mini-project",
+      metrics: [
+        "User registration and management",
+        "Attendance logging per session or date",
+        "Attendance record storage and retrieval",
+        "View and filter attendance data",
+        "Simple, minimal setup ideal for small-scale usage",
+      ],
+    },
+    {
+      id: "movie-recommendation-project",
+      name: "Movie Recommendation Project",
+      shortDescription: "An ML-powered movie recommendation system that suggests films based on user preferences and historical data.",
+      longDescription:
+        "The Movie Recommendation Project uses recommendation algorithms to suggest movies tailored to a user's tastes. By analyzing historical ratings or user inputs, the system predicts which movies a user might like, delivering personalized suggestions. The project showcases skills in data analysis, recommendation logic, and optionally — a user interface to browse or input preferences, making it a hands-on demonstration of machine learning integration in user applications.",
+      techStack: ["Python", "Pandas", "NumPy", "Scikit-Learn", "Machine Learning"],
+      role: "Data Scientist / Developer — prepared the dataset, built the recommendation engine (collaborative or content-based), implemented prediction logic, and built the interface (or script) for users to receive recommendations.",
+      year: 2025,
+      repoUrl: "https://github.com/0xSharik/movie-recommendation-project",
+      metrics: [
+        "Movie recommendation using data-driven ML algorithms",
+        "Dataset preprocessing and feature extraction",
+        "Personalized suggestions based on user history or preference input",
+        "Demonstrates ML fundamentals and practical recommendation logic",
+        "Extensible — can integrate with a web or mobile front-end for real-world use",
+      ],
+    },
+    
    
   ],
 

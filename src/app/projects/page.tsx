@@ -10,7 +10,7 @@ import { ProjectModal } from "@/components/organisms/project-modal";
 export default function Projects() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
-  const featuredProject = portfolioContentMock.projects.find((p) => p.featured);
+  const featuredProjects = portfolioContentMock.projects.filter((p) => p.featured);
   const otherProjects = portfolioContentMock.projects.filter((p) => !p.featured);
 
   return (
@@ -28,18 +28,23 @@ export default function Projects() {
               <span className="text-brand-magenta-light">//</span> Featured Work
             </h1>
 
-            {/* Featured Project */}
-            {featuredProject && (
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-              >
-                <ProjectCard
-                  project={featuredProject}
-                  onClick={() => setSelectedProject(featuredProject)}
-                />
-              </motion.div>
+            {/* Featured Projects */}
+            {featuredProjects.length > 0 && (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {featuredProjects.map((project, index) => (
+                  <motion.div
+                    key={project.id}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.8, delay: 0.2 + index * 0.1 }}
+                  >
+                    <ProjectCard
+                      project={project}
+                      onClick={() => setSelectedProject(project)}
+                    />
+                  </motion.div>
+                ))}
+              </div>
             )}
 
             {/* Other Projects Grid */}

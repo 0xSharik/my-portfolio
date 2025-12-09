@@ -26,12 +26,16 @@ export function ProjectCard({ project, onClick }: ProjectCardProps) {
   const getPrimaryMetric = () => {
     if (project.metrics && project.metrics.length > 0) {
       const metric = project.metrics[0];
+      // Prefer obviously large/monetary/user metrics
       if (metric.includes('K+') || metric.includes('M+') || metric.includes('$')) {
         return metric;
       }
       if (metric.includes('users') || metric.includes('downloads')) {
         return metric;
       }
+
+      // Fallback: return the first metric so cards always show something useful
+      return metric;
     }
     return null;
   };
@@ -55,6 +59,8 @@ export function ProjectCard({ project, onClick }: ProjectCardProps) {
         `,
         boxShadow: '0 20px 60px rgba(0, 0, 0, 0.9), 0 -8px 32px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 0 40px rgba(0, 242, 255, 0.15)',
         position: 'relative',
+        borderRadius: '1rem',
+        overflow: 'hidden',
       }}
       whileHover={{
         y: -4,
@@ -191,7 +197,7 @@ export function ProjectCard({ project, onClick }: ProjectCardProps) {
       <div className="mt-5 flex items-center justify-between text-xs" style={{ color: 'rgba(255, 255, 255, 0.5)' }}>
         <div className="flex items-center gap-4" style={{ fontSize: '0.75rem', lineHeight: '1rem' }}>
           {primaryMetric && <span>{primaryMetric}</span>}
-          <span>2024</span>
+          <span>{project.year ?? new Date().getFullYear()}</span>
           {hasRealTime && <span style={{ color: '#00f2ff' }}>Real-time</span>}
           {aiTechs.length > 0 && <span style={{ color: '#00f2ff' }}>ML</span>}
         </div>

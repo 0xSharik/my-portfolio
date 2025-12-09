@@ -83,4 +83,38 @@
     pointer-events: none;
     z-index: 100; /* Ensure it's on top of UI but below modals/popups */
   }
+
+  /* Hide default scrollbars globally (Chrome/Safari/Edge) but allow custom ones on specific elements */
+  html, body {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE 10+ */
+  }
+  html::-webkit-scrollbar, body::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
+
+  /* Custom scrollbar for modal content */
+/* Custom scrollbar for modal content */
+  .overflow-y-auto::-webkit-scrollbar {
+    width: 8px;
+  }
+  .overflow-y-auto::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+  }
+  .overflow-y-auto::-webkit-scrollbar-thumb {
+    background: rgba(0, 242, 255, 0.4);
+    border-radius: 4px;
+    transition: background 0.2s ease;
+  }
+  .overflow-y-auto::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 242, 255, 0.6);
+  }
+
+  /* Firefox scrollbar styling */
+  .overflow-y-auto {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 242, 255, 0.4) rgba(0, 0, 0, 0.3);
+  }
 }
