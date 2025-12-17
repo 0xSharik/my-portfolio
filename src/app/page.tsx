@@ -192,7 +192,7 @@ export default function Home() {
     {/* Co-Founder */}
     <div className="bg-black/30 backdrop-blur-sm rounded-lg p-5 border border-purple-500/20 text-center">
       <h3 className="text-purple-400 font-semibold text-sm tracking-wide mb-1">
-        Co-Founder, Softgame Studio
+        Co-Founder, Soft Game Studio
       </h3>
       <div className="w-10 h-[2px] bg-purple-400 mx-auto mb-2"></div>
       <p className="text-gray-400 text-xs leading-relaxed">
@@ -282,7 +282,7 @@ export default function Home() {
             <div className="flex items-start justify-between mb-3">
               <div>
                 <h3 className="text-xl font-bold text-white mb-1">
-                  Co-Founder — Softgame Studio
+                  Co-Founder — Soft Game Studio
                 </h3>
                 <span className="inline-block px-3 py-1 bg-purple-500/15 text-purple-300 text-xs font-semibold rounded-full border border-purple-500/30">
                   Startup

@@ -49,12 +49,19 @@
   * {
     border-color: hsl(var(--border));
   }
+
   body {
     background-color: hsl(var(--background));
     color: hsl(var(--foreground));
     font-family: var(--font-inter), system-ui, sans-serif;
   }
-  h1, h2, h3, h4, h5, h6 {
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-family: var(--font-space-grotesk), system-ui, sans-serif;
     letter-spacing: -0.025em;
   }
@@ -66,12 +73,15 @@
     backdrop-filter: blur(4px);
     border: 1px solid rgba(34, 211, 238, 0.2);
   }
+
   .neon-glow {
     filter: drop-shadow(0 0 12px currentColor);
   }
+
   .film-grain {
     position: relative;
   }
+
   .film-grain::before {
     content: "";
     position: absolute;
@@ -81,33 +91,42 @@
     height: 100%;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
     pointer-events: none;
-    z-index: 100; /* Ensure it's on top of UI but below modals/popups */
+    z-index: 100;
+    /* Ensure it's on top of UI but below modals/popups */
   }
 
   /* Hide default scrollbars globally (Chrome/Safari/Edge) but allow custom ones on specific elements */
-  html, body {
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* IE 10+ */
+  html,
+  body {
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* IE 10+ */
   }
-  html::-webkit-scrollbar, body::-webkit-scrollbar {
+
+  html::-webkit-scrollbar,
+  body::-webkit-scrollbar {
     width: 0;
     height: 0;
   }
 
   /* Custom scrollbar for modal content */
-/* Custom scrollbar for modal content */
+  /* Custom scrollbar for modal content */
   .overflow-y-auto::-webkit-scrollbar {
     width: 8px;
   }
+
   .overflow-y-auto::-webkit-scrollbar-track {
     background: rgba(0, 0, 0, 0.3);
     border-radius: 4px;
   }
+
   .overflow-y-auto::-webkit-scrollbar-thumb {
     background: rgba(0, 242, 255, 0.4);
     border-radius: 4px;
     transition: background 0.2s ease;
   }
+
   .overflow-y-auto::-webkit-scrollbar-thumb:hover {
     background: rgba(0, 242, 255, 0.6);
   }

@@ -27,7 +27,7 @@ export function LenisProvider({ children }: { children: React.ReactNode }) {
     const initLenis = async () => {
       try {
         const Lenis = (await import("lenis")).default;
-        
+
         lenisRef.current = new Lenis({
           duration: 1.2,
           easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -61,7 +61,7 @@ export function LenisProvider({ children }: { children: React.ReactNode }) {
     return () => {
       lenisRef.current?.destroy();
       if (typeof window !== "undefined" && (window as any).gsap) {
-        (window as any).gsap.ticker.remove(() => {});
+        (window as any).gsap.ticker.remove(() => { });
       }
     };
   }, []);

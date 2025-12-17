@@ -415,6 +415,33 @@ export const portfolioContentMock: PortfolioContent = {
         "Extensible — can integrate with a web or mobile front-end for real-world use",
       ],
     },
+    {
+      id: "facerec-proctoring-v2",
+      name: "FaceRec Proctoring System v2.0",
+      shortDescription:
+        "A high-performance enterprise proctoring system featuring a unique Dual-Loop Architecture for 60 FPS live monitoring and background AI verification.",
+      longDescription:
+        "A robust exam proctoring solution designed to solve the critical latency issues in AI monitoring. By engineering a decoupled 'Dual-Loop' architecture, the system separates high-speed video streaming (Fast Lane) from compute-intensive face verification (Slow Lane). This ensures administrators receive a fluid 60 FPS live feed while DeepFace performs rigorous anti-cheat checks—such as multiple face detection and identity verification—in the background without blocking the main event loop.",
+      techStack: [
+        "Python",
+        "Flask",
+        "DeepFace",
+        "OpenCV",
+        "React",
+        "WebSockets",
+        "Railway",
+      ],
+      role:
+        "Architected the entire 'Dual-Loop' streaming protocol to eliminate video lag. Developed the Flask backend and custom binary frame-pushing mechanism. Integrated DeepFace for reliable identity verification and designed the responsive Admin Dashboard for real-time monitoring.",
+      year: 2025,
+      metrics: [
+        "60 FPS Live Stream Latency (Dual-Loop)",
+        "Real-time Multiple Face Detection",
+        "Zero-Encoding Raw Binary Stream",
+        "Cloud-Ready Railway Architecture",
+        "Protected Admin Command Center",
+      ],
+    },
     
    
   ],
