@@ -251,8 +251,39 @@ export const portfolioContentMock: PortfolioContent = {
       year: 2025,
       repoUrl: "https://github.com/your-username/ml-dashboard",
       liveUrl: "https://hoa-us.web.app/home",
-      metrics: ["Live production deployment with real users", "Automated email notifications for complaints & updates", "Multi-role access control (Admin, Residents)","Centralized document, notice, and complaint management","Real-time data updates with secure authentication"],
+      metrics: ["Live production deployment with real users", "Automated email notifications for complaints & updates", "Multi-role access control (Admin, Residents)", "Centralized document, notice, and complaint management", "Real-time data updates with secure authentication"],
     },
+    {
+      id: "blockchain-certificate-verification",
+      name: "Blockchain Certificate Verification System",
+      shortDescription:
+        "A blockchain-based system to issue and verify certificates using smart contracts, combined with Firebase authentication and storage for secure access and document management.",
+      longDescription:
+        "This project implements a blockchain-powered certificate verification system where certificates are issued on-chain and verified using a unique hash or transaction reference. Smart contracts ensure immutability and trustless verification without relying on a central authority. Firebase Authentication is used to manage issuer access, while Firebase Storage handles secure off-chain storage of certificate files and related metadata. A minimal frontend integrates blockchain interactions with Firebase services, focusing on correctness, security, and real-world Web3 architecture rather than UI complexity.",
+      techStack: [
+        "Solidity",
+        "Ethereum (Sepolia Testnet)",
+        "Smart Contracts",
+        "Firebase Authentication",
+        "Firebase Storage",
+        "JavaScript",
+        "Minimal Frontend",
+        "Web3 / Wallet Integration",
+      ],
+      role:
+        "Developer & Maintainer — designed and deployed smart contracts, implemented on-chain certificate hashing and verification logic, integrated Firebase Authentication for issuer access control, configured Firebase Storage for off-chain certificate files, and built a minimal frontend to connect blockchain and Firebase services.",
+      year: 2025,
+      liveUrl: "https://block-cert-verify.web.app/",
+      repoUrl: "https://github.com/0xSharik/Blockchaiin-Certificate-verification",
+      metrics: [
+        "On-chain certificate issuance and verification",
+        "Tamper-proof validation using blockchain immutability",
+        "Secure issuer authentication using Firebase Auth",
+        "Off-chain certificate storage via Firebase Storage",
+        "Hybrid on-chain and off-chain architecture with minimal frontend",
+      ],
+    },
+
     {
       id: "teckathon-cu-data-management",
       name: "Teckathon-CU Data Management Platform",
@@ -305,7 +336,7 @@ export const portfolioContentMock: PortfolioContent = {
       shortDescription: "A community-driven fan platform with full admin control to manage members, content, and access in real time.",
       longDescription:
         "Onepice-Club is a full-stack community platform designed to manage and showcase fan membership through a controlled backend system. The application allows administrators to add, edit, and delete member records securely, ensuring complete control over community data. The frontend is built for fast browsing, responsive interaction, and clean presentation, while the backend handles structured data updates in real time. The project demonstrates strong fundamentals in CRUD operations, state handling, admin access control, and deployment pipelines, making it both a functional product and a solid engineering showcase.",
-      techStack: [ "React", "Firebase (Database + Hosting)", "JavaScript", "Tailwind CSS"],
+      techStack: ["React", "Firebase (Database + Hosting)", "JavaScript", "Tailwind CSS"],
       role: "Full-stack Developer — designed the UI, built member management backend (CRUD), connected real-time updates, handled deployment, and structured the project architecture.",
       liveUrl: "https://onepice-club.vercel.app/about",
       year: 2025,
@@ -397,6 +428,7 @@ export const portfolioContentMock: PortfolioContent = {
         "Simple, minimal setup ideal for small-scale usage",
       ],
     },
+
     {
       id: "movie-recommendation-project",
       name: "Movie Recommendation Project",
@@ -434,6 +466,7 @@ export const portfolioContentMock: PortfolioContent = {
       role:
         "Architected the entire 'Dual-Loop' streaming protocol to eliminate video lag. Developed the Flask backend and custom binary frame-pushing mechanism. Integrated DeepFace for reliable identity verification and designed the responsive Admin Dashboard for real-time monitoring.",
       year: 2025,
+      repoUrl: "https://github.com/0xSharik/movie-recommendation-project",
       metrics: [
         "60 FPS Live Stream Latency (Dual-Loop)",
         "Real-time Multiple Face Detection",
@@ -442,8 +475,9 @@ export const portfolioContentMock: PortfolioContent = {
         "Protected Admin Command Center",
       ],
     },
-    
-   
+
+
+
   ],
 
   experience: [
